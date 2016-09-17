@@ -1,0 +1,3 @@
+/home/avinash/Git project/ObjDetection/CMakeFiles/edit_cache.dir
+/home/avinash/Git project/ObjDetection/CMakeFiles/rebuild_cache.dir
+/home/avinash/Git project/ObjDetection/CMakeFiles/ObjDetection.dir

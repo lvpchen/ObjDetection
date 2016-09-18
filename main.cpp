@@ -3,6 +3,7 @@
 #include"opencv2/videoio.hpp"
 #include "opencv2/highgui.hpp"
 #include<iostream>
+#include<ctime>
 
 using namespace cv;
 using namespace std;

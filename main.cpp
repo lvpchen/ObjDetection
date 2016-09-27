@@ -1,24 +1,62 @@
-// Program to access default camera form an x-86 maschine.
+// Program to detect cars form a given image.
 
+#include "opencv2/core.hpp"
 #include"opencv2/videoio.hpp"
 #include "opencv2/highgui.hpp"
+#include "opencv2/objdetect.hpp"
+#include "opencv2/imgproc.hpp"
+#include "opencv2/imgcodecs.hpp"
+#include <string>
 #include<iostream>
-#include<ctime>
 
 using namespace cv;
 using namespace std;
 
+// Global variables
+CascadeClassifier carSides;
+string carSidesCascade = "/home/avinash/Git project/ObjDetection/data/cascade.xml";
+vector<Rect> vCarSides;
+
+Mat frame;
+VideoCapture camCapture;
+
 // Main function
 int main(){
-  VideoCapture cap(0); //cap() is used to capture camera  DEFAULT_CAMERA = 0.
-  if(cap.isOpened()){  //returns true if camera is successfully initialized.
-  cout<<"Default camera initialized"<<endl;
+namedWindow("view", CV_WINDOW_AUTOSIZE);
+  // Loading Cascade
+  if(!carSides.load(carSidesCascade)){
+    cout <<" Error loading carSidesCascade"<< endl;
   }
-Mat frame;  //Creates a Mat object "frame" to hold captured image.
-namedWindow("Camera", WINDOW_AUTOSIZE);  //Creates a window "Camera" of size = AUTOSIZE
-while(waitKey(30) != 27){  // Waits for "esc" key to be pressed.
-cap >> frame;  //captured image is stored in frame.
-imshow("Camera", frame);  // Displays captured image.
-}
+  else{
+    cout << "carSidesCascade loaded correctly" << endl;
+  }
+
+  // Access Default camera (0)
+  camCapture.open(0);
+  if(!camCapture.isOpened()){
+    cout << "Error opening default camera"<<endl;
+    return -1;
+  }
+  // Load captured image to frame and apply detection logic.
+  while(camCapture.read(frame)){
+    if(frame.empty()){
+      cout<< "Could not load frame" << endl;
+      break;
+    }
+    else{
+      cout << "frame loaded correctly" << endl;
+    }
+  // Define rectangle size
+  Size maxCarSides = frame.size();
+  Size minCarSides(0,0);
+  //Detect object and draw appropriate rectangles
+  carSides.detectMultiScale(frame, vCarSides, 1.1, 2, 0, minCarSides, maxCarSides);
+  rectangle(frame, vCarSides.at(0), Scalar(0,0,255), 1, LINE_8,0);
+  if(!frame.empty())
+    imshow("view", frame);  // Displays captured image.
+  if(waitKey(30) == 27){
+      break;
+    }
+  }
   return 0;
 }

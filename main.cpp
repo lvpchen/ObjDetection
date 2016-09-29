@@ -1,5 +1,7 @@
-// Program to detect cars form a given image.
-
+/*The program detects cars using the default camera availale.
+  Local Binary Pattern is used to train a Cascade Classifier using
+  OpenCV utilities "opencv_createcascade" and "opencv_traincascade".
+  */
 #include "opencv2/core.hpp"
 #include"opencv2/videoio.hpp"
 #include "opencv2/highgui.hpp"
@@ -20,7 +22,11 @@ vector<Rect> vCarSides;
 Mat frame;
 VideoCapture camCapture;
 
-// Main function
+/* @param camCapture Default camera value 0
+   Capture and read frame from camera.
+   Detect objects using the classifier.
+   Draw a red rectangle around the identified object.
+    */
 int main(){
 namedWindow("view", CV_WINDOW_AUTOSIZE);
   // Loading Cascade
@@ -46,14 +52,25 @@ namedWindow("view", CV_WINDOW_AUTOSIZE);
     else{
       cout << "frame loaded correctly" << endl;
     }
+
+  //For static image testing only
+  /*frame = imread("/home/avinash/Downloads/CarData/TestImages/test-9.pgm");
+  if(frame.empty()){
+    cout<< "Error loading image" << endl;
+    return -1;
+  }*/
   // Define rectangle size
   Size maxCarSides = frame.size();
   Size minCarSides(0,0);
   //Detect object and draw appropriate rectangles
-  carSides.detectMultiScale(frame, vCarSides, 1.1, 2, 0, minCarSides, maxCarSides);
-  rectangle(frame, vCarSides.at(0), Scalar(0,0,255), 1, LINE_8,0);
+  carSides.detectMultiScale(frame, vCarSides, 1.1, 6, 0, minCarSides, maxCarSides);
+  for(int i = 0; i< vCarSides.size(); i++){
+    rectangle(frame, vCarSides.at(i), Scalar(0,0,255), 1, LINE_8,0);
+  }
+  // Displays captured image.
   if(!frame.empty())
-    imshow("view", frame);  // Displays captured image.
+    imshow("view", frame);
+  //waitKey(0); -- For image testing only.
   if(waitKey(30) == 27){
       break;
     }

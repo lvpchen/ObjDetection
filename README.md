@@ -1,2 +1,5 @@
 # ObjDetection
-This is an application to capture images,  detect objects and estimate distance from the camera to the object using OpenCV and multi-core architecture of Raspberry Pi 3 
+The program detects side views of cars using the default camera availale.
+  Local Binary Pattern is used to train a Cascade Classifier using
+  OpenCV utilities "opencv_createcascade" and "opencv_traincascade".
+  The training image set is taken from https://cogcomp.cs.illinois.edu/Data/Car/

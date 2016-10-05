@@ -1,7 +1,7 @@
-/*The program detects cars using the default camera availale.
-  Local Binary Pattern is used to train a Cascade Classifier using
-  OpenCV utilities "opencv_createcascade" and "opencv_traincascade".
-  */
+/*
+Author: AVIRAVI
+*/
+
 #include "opencv2/core.hpp"
 #include"opencv2/videoio.hpp"
 #include "opencv2/highgui.hpp"
@@ -15,6 +15,18 @@ using namespace cv;
 using namespace std;
 
 // Global variables
+const double focalLength  = 1091.576;
+
+/** Function calcDistance calculates the distance between the object an the camera
+ @param int perceivedObjWidth - takes the width of the object, stored in objWidth, in pixels
+ @param double fLength accecpts focal length of the camera from const focalLength.
+ @param int actualObjWidth takes the actual width of the object measured in mm.
+ @return returns the distance between the camera and the object.
+*/
+inline double calcDistance (int perceivedObjWidth, const double fLength = focalLength, const int actualObjWidth = 29){
+  return ((focalLength * actualObjWidth)/ perceivedObjWidth);
+}
+
 CascadeClassifier carSides;
 string carSidesCascade = "/home/avinash/Git project/ObjDetection/data/cascade.xml";
 vector<Rect> vCarSides;
@@ -22,11 +34,12 @@ vector<Rect> vCarSides;
 Mat frame;
 VideoCapture camCapture;
 
-/* @param camCapture Default camera value 0
-   Capture and read frame from camera.
-   Detect objects using the classifier.
-   Draw a red rectangle around the identified object.
-    */
+/** @param camCapture Default camera value 0
+   The main function captures and reads image frame from the initialized camera.
+   Detects objects using the classifier prints distance of the objects form the camera.
+   Draws a red rectangle around the identified object.
+  */
+
 int main(){
 namedWindow("view", CV_WINDOW_AUTOSIZE);
   // Loading Cascade
@@ -59,13 +72,25 @@ namedWindow("view", CV_WINDOW_AUTOSIZE);
     cout<< "Error loading image" << endl;
     return -1;
   }*/
+
   // Define rectangle size
   Size maxCarSides = frame.size();
   Size minCarSides(0,0);
+
   //Detect object and draw appropriate rectangles
-  carSides.detectMultiScale(frame, vCarSides, 1.1, 6, 0, minCarSides, maxCarSides);
-  for(int i = 0; i< vCarSides.size(); i++){
-    rectangle(frame, vCarSides.at(i), Scalar(0,0,255), 1, LINE_8,0);
+  carSides.detectMultiScale(frame, vCarSides, 1.5, 6, 0, minCarSides, maxCarSides);
+  cout << " Size of vector - vCarSides " << "\t" << vCarSides.size() << endl;
+
+  //Vector to hold the perceived width of the object in pixels.
+  vector<int> objWidth(vCarSides.size());
+
+  if(!vCarSides.empty()){
+    for(int i = 0; i< vCarSides.size(); i++){
+      rectangle(frame, vCarSides.at(i), Scalar(0,0,255), 1, LINE_8,0);
+      objWidth.at(i) = vCarSides.at(i).width;
+      cout << "Width of "<< i << "th object is " << objWidth.at(i) << endl;
+      cout << "distance to camera in mm = "<<calcDistance(objWidth.at(i)) << endl;
+    }
   }
   // Displays captured image.
   if(!frame.empty())

@@ -3,13 +3,13 @@ Author: AVIRAVI
 */
 
 #include "opencv2/core.hpp"
-#include"opencv2/videoio.hpp"
+#include "opencv2/videoio.hpp"
 #include "opencv2/highgui.hpp"
 #include "opencv2/objdetect.hpp"
 #include "opencv2/imgproc.hpp"
 #include "opencv2/imgcodecs.hpp"
 #include <string>
-#include<iostream>
+#include <iostream>
 
 using namespace cv;
 using namespace std;
@@ -95,8 +95,7 @@ namedWindow("view", CV_WINDOW_AUTOSIZE);
       yCoordinate = vCarSides.at(i).y;
       Point location (vCarSides.at(i).x, vCarSides.at(i).y);
       putText(frame, to_string(calcDistance(objWidth.at(i))), location, FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0,0,255));
-      /*cout << "Width of "<< i << "th object is " << objWidth.at(i) << endl;
-      cout << "distance to camera in mm = "<<calcDistance(objWidth.at(i)) << endl;*/
+      //cout << "distance to camera in mm = "<<calcDistance(objWidth.at(i)) << endl;
     }
   }
   // Displays captured image.

@@ -18,18 +18,18 @@ using namespace std;
 const double focalLength  = 1091.576;
 
 /** Function calcDistance calculates the distance between the object an the camera
- @param int perceivedObjWidth - takes the width of the object, stored in objWidth, in pixels
- @param double fLength accecpts focal length of the camera from const focalLength.
- @param int actualObjWidth takes the actual width of the object measured in mm.
- @return returns the distance between the camera and the object.
-*/
+  @param int perceivedObjWidth - takes the width of the object, stored in objWidth, in pixels
+  @param double fLength accecpts focal length of the camera from const focalLength.
+  @param int actualObjWidth takes the actual width of the object measured in mm.
+  @return returns the distance between the camera and the object.
+  */
 inline double calcDistance (int perceivedObjWidth, const double fLength = focalLength, const int actualObjWidth = 29){
   return ((focalLength * actualObjWidth)/ perceivedObjWidth);
 }
 
 CascadeClassifier carSides;
 string carSidesCascade = "/home/avinash/Git project/ObjDetection/data/cascade.xml";
-vector<Rect> vCarSides;
+vector< Rect > vCarSides;
 
 Mat frame;
 VideoCapture camCapture;
@@ -37,7 +37,7 @@ VideoCapture camCapture;
 /** @param camCapture Default camera value 0
    The main function captures and reads image frame from the initialized camera.
    Detects objects using the classifier prints distance of the objects form the camera.
-   Draws a red rectangle around the identified object.
+   Draws a red rectangle around the identified object and displays the current distance on top of the rectangle.
   */
 
 int main(){
@@ -85,11 +85,18 @@ namedWindow("view", CV_WINDOW_AUTOSIZE);
   vector<int> objWidth(vCarSides.size());
 
   if(!vCarSides.empty()){
+    // x and y co-ordinates to create a point object.
+    int xCoordinate, yCoordinate;
+
     for(int i = 0; i< vCarSides.size(); i++){
       rectangle(frame, vCarSides.at(i), Scalar(0,0,255), 1, LINE_8,0);
       objWidth.at(i) = vCarSides.at(i).width;
-      cout << "Width of "<< i << "th object is " << objWidth.at(i) << endl;
-      cout << "distance to camera in mm = "<<calcDistance(objWidth.at(i)) << endl;
+      xCoordinate = vCarSides.at(i).x;
+      yCoordinate = vCarSides.at(i).y;
+      Point location (vCarSides.at(i).x, vCarSides.at(i).y);
+      putText(frame, to_string(calcDistance(objWidth.at(i))), location, FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0,0,255));
+      /*cout << "Width of "<< i << "th object is " << objWidth.at(i) << endl;
+      cout << "distance to camera in mm = "<<calcDistance(objWidth.at(i)) << endl;*/
     }
   }
   // Displays captured image.

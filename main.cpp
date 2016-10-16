@@ -8,13 +8,13 @@ Author: AVIRAVI
 #include "opencv2/objdetect.hpp"
 #include "opencv2/imgproc.hpp"
 #include "opencv2/imgcodecs.hpp"
+#include <chrono>
 #include <string>
 #include <iostream>
 
 using namespace cv;
 using namespace std;
 
-// Global variables
 const double focalLength  = 1091.576;
 
 /** Function calcDistance calculates the distance between the object an the camera
@@ -28,7 +28,7 @@ inline double calcDistance (int perceivedObjWidth, const double fLength = focalL
 }
 
 CascadeClassifier carSides;
-string carSidesCascade = "/home/avinash/Git project/ObjDetection/data/cascade.xml";
+string carSidesCascade = "/home/avinash/GitProjects/ObjDetection/data/cascade.xml";
 vector< Rect > vCarSides;
 
 Mat frame;
@@ -66,20 +66,17 @@ namedWindow("view", CV_WINDOW_AUTOSIZE);
       cout << "frame loaded correctly" << endl;
     }
 
-  //For static image testing only
-  /*frame = imread("/home/avinash/Downloads/CarData/TestImages/test-9.pgm");
-  if(frame.empty()){
-    cout<< "Error loading image" << endl;
-    return -1;
-  }*/
-
   // Define rectangle size
   Size maxCarSides = frame.size();
   Size minCarSides(0,0);
 
   //Detect object and draw appropriate rectangles
+  std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
   carSides.detectMultiScale(frame, vCarSides, 1.5, 6, 0, minCarSides, maxCarSides);
-  cout << " Size of vector - vCarSides " << "\t" << vCarSides.size() << endl;
+  std::chrono::steady_clock::time_point end= std::chrono::steady_clock::now();
+  std::cout << "Time difference in microseconds = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() <<std::endl;
+  std::cout << "Time difference in nanoseconds = " << std::chrono::duration_cast<std::chrono::nanoseconds> (end - begin).count() <<std::endl;
+  cout << " Number of cars detected = " << "\t" << vCarSides.size() << endl;
 
   //Vector to hold the perceived width of the object in pixels.
   vector<int> objWidth(vCarSides.size());
@@ -95,13 +92,11 @@ namedWindow("view", CV_WINDOW_AUTOSIZE);
       yCoordinate = vCarSides.at(i).y;
       Point location (vCarSides.at(i).x, vCarSides.at(i).y);
       putText(frame, to_string(calcDistance(objWidth.at(i))), location, FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0,0,255));
-      //cout << "distance to camera in mm = "<<calcDistance(objWidth.at(i)) << endl;
     }
   }
   // Displays captured image.
   if(!frame.empty())
     imshow("view", frame);
-  //waitKey(0); -- For image testing only.
   if(waitKey(30) == 27){
       break;
     }

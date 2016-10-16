@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/avinash/Git project/ObjDetection"
+CMAKE_SOURCE_DIR = /home/avinash/GitProjects/ObjDetection
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/avinash/Git project/ObjDetection/build"
+CMAKE_BINARY_DIR = /home/avinash/GitProjects/ObjDetection/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/ObjDetection.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/ObjDetection.dir/flags.make
 
 CMakeFiles/ObjDetection.dir/main.cpp.o: CMakeFiles/ObjDetection.dir/flags.make
 CMakeFiles/ObjDetection.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/avinash/Git project/ObjDetection/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ObjDetection.dir/main.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ObjDetection.dir/main.cpp.o -c "/home/avinash/Git project/ObjDetection/main.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/avinash/GitProjects/ObjDetection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ObjDetection.dir/main.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ObjDetection.dir/main.cpp.o -c /home/avinash/GitProjects/ObjDetection/main.cpp
 
 CMakeFiles/ObjDetection.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ObjDetection.dir/main.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/avinash/Git project/ObjDetection/main.cpp" > CMakeFiles/ObjDetection.dir/main.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/avinash/GitProjects/ObjDetection/main.cpp > CMakeFiles/ObjDetection.dir/main.cpp.i
 
 CMakeFiles/ObjDetection.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ObjDetection.dir/main.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/avinash/Git project/ObjDetection/main.cpp" -o CMakeFiles/ObjDetection.dir/main.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/avinash/GitProjects/ObjDetection/main.cpp -o CMakeFiles/ObjDetection.dir/main.cpp.s
 
 CMakeFiles/ObjDetection.dir/main.cpp.o.requires:
 
@@ -90,48 +90,24 @@ ObjDetection_EXTERNAL_OBJECTS =
 
 ObjDetection: CMakeFiles/ObjDetection.dir/main.cpp.o
 ObjDetection: CMakeFiles/ObjDetection.dir/build.make
-ObjDetection: /usr/local/lib/libopencv_xphoto.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_xobjdetect.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_tracking.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_surface_matching.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_structured_light.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_stereo.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_saliency.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_rgbd.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_reg.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_plot.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_optflow.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_line_descriptor.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_fuzzy.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_dpm.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_dnn.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_datasets.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_ccalib.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_bioinspired.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_bgsegm.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_aruco.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_videostab.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_superres.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_stitching.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_photo.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_text.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_face.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_ximgproc.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_xfeatures2d.so.3.1.0
 ObjDetection: /usr/local/lib/libopencv_shape.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_video.so.3.1.0
+ObjDetection: /usr/local/lib/libopencv_stitching.so.3.1.0
+ObjDetection: /usr/local/lib/libopencv_superres.so.3.1.0
+ObjDetection: /usr/local/lib/libopencv_videostab.so.3.1.0
 ObjDetection: /usr/local/lib/libopencv_objdetect.so.3.1.0
 ObjDetection: /usr/local/lib/libopencv_calib3d.so.3.1.0
 ObjDetection: /usr/local/lib/libopencv_features2d.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_ml.so.3.1.0
+ObjDetection: /usr/local/lib/libopencv_flann.so.3.1.0
 ObjDetection: /usr/local/lib/libopencv_highgui.so.3.1.0
+ObjDetection: /usr/local/lib/libopencv_ml.so.3.1.0
+ObjDetection: /usr/local/lib/libopencv_photo.so.3.1.0
+ObjDetection: /usr/local/lib/libopencv_video.so.3.1.0
 ObjDetection: /usr/local/lib/libopencv_videoio.so.3.1.0
 ObjDetection: /usr/local/lib/libopencv_imgcodecs.so.3.1.0
 ObjDetection: /usr/local/lib/libopencv_imgproc.so.3.1.0
-ObjDetection: /usr/local/lib/libopencv_flann.so.3.1.0
 ObjDetection: /usr/local/lib/libopencv_core.so.3.1.0
 ObjDetection: CMakeFiles/ObjDetection.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/avinash/Git project/ObjDetection/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ObjDetection"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/avinash/GitProjects/ObjDetection/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ObjDetection"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ObjDetection.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -148,6 +124,6 @@ CMakeFiles/ObjDetection.dir/clean:
 .PHONY : CMakeFiles/ObjDetection.dir/clean
 
 CMakeFiles/ObjDetection.dir/depend:
-	cd "/home/avinash/Git project/ObjDetection/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/avinash/Git project/ObjDetection" "/home/avinash/Git project/ObjDetection" "/home/avinash/Git project/ObjDetection/build" "/home/avinash/Git project/ObjDetection/build" "/home/avinash/Git project/ObjDetection/build/CMakeFiles/ObjDetection.dir/DependInfo.cmake" --color=$(COLOR)
+	cd /home/avinash/GitProjects/ObjDetection/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/avinash/GitProjects/ObjDetection /home/avinash/GitProjects/ObjDetection /home/avinash/GitProjects/ObjDetection/build /home/avinash/GitProjects/ObjDetection/build /home/avinash/GitProjects/ObjDetection/build/CMakeFiles/ObjDetection.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ObjDetection.dir/depend
 

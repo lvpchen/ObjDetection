@@ -71,11 +71,11 @@ namedWindow("view", CV_WINDOW_AUTOSIZE);
   Size minCarSides(0,0);
 
   //Detect object and draw appropriate rectangles
-  std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+  chrono::steady_clock::time_point begin = chrono::steady_clock::now();
   carSides.detectMultiScale(frame, vCarSides, 1.5, 6, 0, minCarSides, maxCarSides);
-  std::chrono::steady_clock::time_point end= std::chrono::steady_clock::now();
-  std::cout << "Time difference in microseconds = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() <<std::endl;
-  std::cout << "Time difference in nanoseconds = " << std::chrono::duration_cast<std::chrono::nanoseconds> (end - begin).count() <<std::endl;
+  chrono::steady_clock::time_point end = chrono::steady_clock::now();
+  cout << "Time difference in microseconds = " << chrono::duration_cast<chrono::microseconds>(end - begin).count() <<endl;
+  cout << "Time difference in nanoseconds = " << chrono::duration_cast<chrono::nanoseconds> (end - begin).count() <<endl;
   cout << " Number of cars detected = " << "\t" << vCarSides.size() << endl;
 
   //Vector to hold the perceived width of the object in pixels.

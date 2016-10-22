@@ -6,7 +6,8 @@ The program detects side views of cars using the default camera availale.
 
 The program is run on Intel Core i5-3210M and ARM Cortex-A53 to assess the execution time of cv::detectMultiScale fuction usiing <chrono> library.
 
-Result:
-              Core i5-3210M               Cortex-A53
-Single-core   4059 micro sec-             19686 micro sec-
-              6124 micro sec              22386 micro sec
+Result: 
+single core execution time:
+
+Core i5-3210M  := 4059 micro sec to 6124 micro sec 
+Cortex-A53 := 19686 micro sec to 22386 micro sec
